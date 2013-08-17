@@ -5,7 +5,7 @@ default[:barebone][:user_home] = "/home/#{node[:barebone][:user]}"
 # default[:barebone][:ubuntu_user] = "ubuntu"
 # default[:barebone][:ubuntu_user_home] = "/home/#{node[:barebone][:ubuntu_user]}"
 
-default[:barebone][:rbenv_dir] = "#{node[:barebone][:user_home]}/.rbenv"
+default[:barebone][:rbenv_dir] = "/opt/rbenv"
 default[:barebone][:rbenv_bin_dir] = "#{node[:barebone][:rbenv_dir]}/bin"
 
 default[:barebone][:ruby_version] = "1.9.3-p448"
