@@ -68,4 +68,4 @@ end
 
 rbenv_gem "bundler"
 
-# include_recipe 'barebone::nginx'
+include_recipe 'barebone::nginx'
