@@ -7,19 +7,18 @@
 # All rights reserved - Do Not Redistribute
 #
 
-template "/etc/apt/sources.list" do
-  variables :nginx_deb => "http://nginx.org/packages/ubuntu/ lucid nginx",
-  :nginx_deb_src => "http://nginx.org/packages/ubuntu/ lucid nginx"
+execute "sources.list.d/nginx.list" do
+  command "echo 'deb http://nginx.org/packages/ubuntu/ lucid nginx\ndeb-src http://nginx.org/packages/ubuntu/ lucid nginx' > /etc/apt/sources.list.d/nginx.list"
 end
 
 cookbook_file "/tmp/nginx_signing.key" do
   source "nginx_signing.key"
 end
 
-execute "rm #{node[:barebone][:user_home]}/chef-recipe.log" do
-  command "rm #{node[:barebone][:user_home]}/chef-recipe.log"
-  only_if { ::File.exists?("#{node[:barebone][:user_home]}/chef-recipe.log")}
-end
+# execute "rm #{node[:barebone][:user_home]}/chef-recipe.log" do
+#   command "rm #{node[:barebone][:user_home]}/chef-recipe.log"
+#   only_if { ::File.exists?("#{node[:barebone][:user_home]}/chef-recipe.log")}
+# end
 
 # execute "whomami logging" do
 #   command "echo 'start' >> #{node[:barebone][:user_home]}/chef-recipe.log && pwd >> #{node[:barebone][:user_home]}/chef-recipe.log && users >> #{node[:barebone][:user_home]}/chef-recipe.log && whoami >> #{node[:barebone][:user_home]}/chef-recipe.log"

@@ -34,3 +34,4 @@ package 'nginx' do
   version   node[:nginx][:version]
 end
 
+execute "/etc/init.d/nginx stop"
