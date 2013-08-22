@@ -7,6 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
+bash "mount /dev/xvdc EBS volume" do
+  code <<-EOH
+    sudo mkfs.ext4 /dev/xvdc
+    sudo mkdir -m 000 /vol
+    echo "/dev/xvdc /vol auto noatime 0 0" | sudo tee -a /etc/fstab
+    sudo mount /vol
+  EOH
+  not_if { File::exist?("/vol") }  
+end
+
 execute "sources.list.d/nginx.list" do
   command "echo 'deb http://nginx.org/packages/ubuntu/ lucid nginx\ndeb-src http://nginx.org/packages/ubuntu/ lucid nginx' > /etc/apt/sources.list.d/nginx.list"
 end
